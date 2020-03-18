@@ -34,7 +34,7 @@ const MyMap = memo(function MyMap ({ setInput, thePin }) {
         // 查看某一个特定点
         else if ( !!thePin && !state.friend ) res.position = { longitude: thePin.longitude, latitude: thePin.latitude } 
         // 是查看好友
-        else if ( !thePin && !!state.friend ) {
+        else if ( !!state.friend ) {
             if (state.friend.length === 0) res.pins = []
             else {
                 const pin = state.friend[state.friend.length - 1];
@@ -43,10 +43,11 @@ const MyMap = memo(function MyMap ({ setInput, thePin }) {
             }  
         }
         return res
-    },[ thePin, state ]);
+    },[ thePin, state.friend ]);
 
     // 确定初始位置
     const [ center, ] = useState(!!position? position : { longitude: 116.123465, latitude: 39.456787 });
+    
     // 确定屏幕上的点
     const [ markers, setMarkers ] = useState(() => {
         if (!position) return []
@@ -59,7 +60,7 @@ const MyMap = memo(function MyMap ({ setInput, thePin }) {
 
     const addPin = useCallback(({ lng, lat }) => {
         // 如果是查看朋友的点 不执行此操作
-        if (!!pins) return 
+        if (!!pins || !!thePin) return 
         setTimeout(()=> setMarkers([{ position: { longitude: lng,latitude:lat } }]), 100)
     }, [ mapRef, setMarkers, pins ]);
 

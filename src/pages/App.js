@@ -33,6 +33,7 @@ function App () {
     const addPin = useCallback(() => { setThePin(null); setMap() },[setMap, setThePin]);
 
     const selectFriend = useCallback((_id) => {
+        setThePin(null)
         dispatch({ type: "SELECT_FRIEND" ,payload: _id })
         setMap()
     }, [ dispatch, setMap ])
