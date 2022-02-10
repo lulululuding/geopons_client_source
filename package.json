@@ -16,7 +16,7 @@
     "graphql": "^14.1.1",
     "graphql-request": "^1.8.2",
     "graphql-tag": "^2.10.1",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.12",
     "react-amap": "^1.2.8",
     "react-apollo": "^2.4.0",
